@@ -75,6 +75,7 @@ function indentation(string, indent) {
 }
 
 function isGoToStatement(text) {
+  console.log("1: " + matches(text, goToPhrase) + " 2: " + matches(text, goToPhrase2) + " 3: " + matches(text, goToTop) + " 4: " + matches(text, goToBottom));
   return matches(text, goToPhrase) || matches(text, goToPhrase2) || matches(text, goToTop) || matches(text, goToBottom);
 }
 
@@ -206,6 +207,9 @@ function matches(text, phraseArray) {
     if (j >= phraseArray.length) {
       if (currentWord != "") {
         outputPhrase.push(currentWord);
+      }
+      if (outputPhrase.length == 0) {
+        return false;
       }
       return outputPhrase;
     } else if (matchesToken(words[i], phraseArray[j])) {
