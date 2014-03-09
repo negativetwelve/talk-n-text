@@ -72,27 +72,27 @@ function indentation(string, indent) {
 }
 
 function isGoToStatement(text) {
-  
+  return matches(text, goToPhrase);
 }
 
 function parseGoToText(text) {
-  
+  console.log("called go to");
 }
 
 function isFindFunction(text) {
-  
+  return matches(text, findFunctionPhrase);
 }
 
 function callFindFunction(text) {
-  
+  console.log("called find function");
 }
 
 function isFindClass(text) {
-  
+  return matches(text, findClassPhrase);
 }
 
 function callFindClass(text) {
-  
+  console.log("called find class");
 }
 
 function makeFunction(text) {
@@ -267,6 +267,10 @@ var printCommand = [["print", "Prince"], null];
 var lt = [null,["<", "less"], ["than", "then"], null];
 var gt = [null, [">", "greater"], ["than", "then"], null];
 var equal = [["=", "equal", "equals", "Eagle"], ["equal", "equals"]];
+
+var goToPhrase = [["go"], ["to"], ["line"], null];
+var findFunctionPhrase = [["find"], ["function"], null];
+var findClassPhrase = [["find"], ["class"], null];
 
 
 // Main function, called on page load
