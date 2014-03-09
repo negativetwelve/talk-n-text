@@ -67,7 +67,7 @@ function matches(text, phraseArray) {
   var j=0;
   for (var i=0; i < words.length; i++) {
     if (j >= phraseArray.length) {
-      return;
+      return outputPhrase;
     } else if (matchesToken(words[i], phraseArray[j])) {
       if (currentWord != "") {
         outputPhrase.push(currentWord);
