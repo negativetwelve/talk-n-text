@@ -4,24 +4,32 @@
       .row
         .col-md-8.col-md-offset-2
           h1.uppercase.center Talk Into Text
-          h4.center
-            | By:
+          h4.center.white
+            | By: 
             = link_to "Mark Miyashita", "http://markmiyashita.com", class: "dark-link"
-            | and 
+            |  and 
             = link_to "Melissa Huang", "http://huangmelissa.com", class: "dark-link"
   section#about
     .container
       .row
         .col-md-8.col-md-offset-2
           h1.uppercase.center About
+          p.white.center
+            | Talk Into Text is an online text editor designed to allow you to code
+            | without typing. You simply speak in a natural tone through your microphone
+            | and the online text editor will turn your spoken word into code.
+          h4.center.white Magic.
   section#impact
     .container
       .row
         .col-md-8.col-md-offset-2
           h1.uppercase.center Impact
+          p.white.center
+            | Text for the impact section goes here.
   section#try
     .container
       .row
         .col-md-8.col-md-offset-2
           h1.uppercase.center Try now!
-          = link_to "Test it out now!", text_path, class: "flat-button"
+          .try-now-container.center
+            = link_to "Test it out now!", text_path, class: "flat-button"

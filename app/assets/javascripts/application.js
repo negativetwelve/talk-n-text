@@ -31,6 +31,7 @@ var code = [
 $(document).ready(function() {
   var mode = require("ace/mode/python").Mode;
   editor = ace.edit("editor");
+  editor.setShowPrintMargin(false);
   editor.getSession().setMode(new mode());
   editor.getSession().setValue(code);
 });
@@ -51,4 +52,20 @@ function getLine(index) {
   var line = lines[index - 1];
   var text = line.split("    ").join("");
   return text;
+}
+
+function goToLine(index) {
+  editor.gotoLine(index);
+}
+
+function findDefinition(functionName) {
+  var phrase = "def "  + functionName;
+  editor.find(phrase ,{
+      backwards: false,
+      wrap: false,
+      caseSensitive: false,
+      wholeWord: false,
+      regExp: false
+  });
+  editor.findNext();
 }
