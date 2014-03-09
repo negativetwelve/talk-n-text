@@ -224,10 +224,10 @@ var indentationLevel;
 var define_func = "define a function";
 var args = "that takes";
 var args1 = "that take";
-var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
+var forPhrase = [["for", "4", "four", "Ford"], null, ["in", "into"], null];
 var ret = "return";
 var whilePhrase = [["while"], null];
-var ifPhrase = [["if"], null];
+var ifPhrase = [["if", "is"], null];
 var printCommand = [["print", "Prince"], null];
 
 // Main function, called on page load
