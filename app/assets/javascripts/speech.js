@@ -71,6 +71,8 @@ function parseText(text) {
     callFindClass(text);
   } else if (isDeleteLine(text)) {
     callDeleteLine(text);
+  } else if (isDeletePreviousLine(text)) {
+    callDeletePreviousLine(text);
   }
 }
 
@@ -99,12 +101,32 @@ function parseGoToText(text) {
   }
 }
 
+function isDeletePreviousLine(text) {
+  return matches(text, undoPhrase);
+}
+
+function callDeletePreviousLine(text) {
+  console.log("call delete previous line");
+
+  var code = getAllLines();
+  var row = getCursorPosition();
+  code.splice(row - 1, 1);
+  editor.getSession().setValue(code.join("\n"));
+  moveCursorTo(row - 1);
+}
+
 function isDeleteLine(text) {
-  
+  return matches(text, deleteCurrentLinePhrase);
 }
 
 function callDeleteLine(text) {
-  
+  console.log("call delete current line");
+
+  var code = getAllLines();
+  var row = getCursorPosition();
+  code.splice(row, 1);
+  editor.getSession().setValue(code.join("\n"));
+  moveCursorTo(row);
 }
 
 function isFindFunction(text) {
@@ -313,6 +335,9 @@ var goToBottom = [["goto", "go"], ["bottom"]];
 
 var findFunctionPhrase = [["find"], ["function"], null];
 var findClassPhrase = [["find"], ["class"], null];
+
+var deleteCurrentLinePhrase = [["delete"], ["line"]];
+var undoPhrase = ["undo"];
 
 
 // Main function, called on page load
