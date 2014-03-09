@@ -74,16 +74,15 @@ function makeFunction(text) {
   editor.insert(funcName);
   editor.insert("(");
   if (indOfArgs != -1) {
-    if (paramSub > 1) {
-      editor.insert(paramSub[0]);
+    editor.insert(paramSub[0]);
+    if (paramSub.length > 1) {
       editor.insert(", ");
       editor.insert(paramSub[2]);
-      if (paramSub > 3) {
+      if (paramSub.length > 3) {
+        editor.insert(", ");
         editor.insert(paramSub[3]);  
       }
-    } else {
-      editor.insert(paramSub[0]);
-    }
+    } 
   }
   editor.insert("): \n\t");
 
