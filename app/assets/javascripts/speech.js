@@ -73,6 +73,10 @@ function parseText(text) {
     callDeleteLine(text);
   } else if (isDeletePreviousLine(text)) {
     callDeletePreviousLine(text);
+  } else if (isTab(text)) {
+    callTab();
+  } else if (isUnTab(text)) {
+    callUnTab();
   }
 }
 
@@ -83,7 +87,6 @@ function indentation(string, indent) {
 }
 
 function isGoToStatement(text) {
-  console.log("1: " + matches(text, goToPhrase) + " 2: " + matches(text, goToPhrase2) + " 3: " + matches(text, goToTop) + " 4: " + matches(text, goToBottom));
   return matches(text, goToPhrase) || matches(text, goToPhrase2) || matches(text, goToTop) || matches(text, goToBottom);
 }
 
@@ -103,6 +106,22 @@ function parseGoToText(text) {
 
 function isDeletePreviousLine(text) {
   return matches(text, undoPhrase);
+}
+
+function isUndo(text) {
+  return matches(text, undoPhrase);
+}
+
+function isRedo(text) {
+  return matches(text, redoPhrase);
+}
+
+function undo() {
+  editor.undo();
+}
+
+function redo() {
+  editor.redo();
 }
 
 function callDeletePreviousLine(text) {
@@ -127,6 +146,24 @@ function callDeleteLine(text) {
   code.splice(row, 1);
   editor.getSession().setValue(code.join("\n"));
   moveCursorTo(row);
+}
+
+function isTab(text) {
+  return matches(text, tabPhrase);
+}
+
+function callTab() {
+  editor.insert("\t");
+}
+
+function isUnTab(text) {
+  return matches(text, untabPhrase);
+}
+
+function callUnTab() {
+  editor.navigateLineStart();
+  editor.remove("    ");
+  editor.navigateLineEnd();
 }
 
 function isFindFunction(text) {
@@ -336,8 +373,14 @@ var goToBottom = [["goto", "go"], ["bottom"]];
 var findFunctionPhrase = [["find"], ["function"], null];
 var findClassPhrase = [["find"], ["class"], null];
 
-var deleteCurrentLinePhrase = [["delete"], ["line"]];
+var deleteCurrentLinePhrase = [["delete", "Elite"], ["line", "lines", "vine"]];
+var deletePreviousLinePhrase = [["delete", "Elite"], ["previous"], ["line", "lines", "vine"]];
+
 var undoPhrase = ["undo"];
+var redoPhrase = ["redo"];
+
+var tabPhrase = [["mountain", "Mountain"]];
+var untabPhrase = [["valley", "Valley"]];
 
 
 // Main function, called on page load
