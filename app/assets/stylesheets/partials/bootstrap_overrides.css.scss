@@ -1,0 +1,38 @@
+$navbar-padding-top: 25px;
+$navbar-padding-bottom: 25px;
+
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar-nav > li > a {
+  padding-top: $navbar-padding-top;
+  padding-bottom: $navbar-padding-bottom;
+}
+
+.navbar-brand {
+  padding-top: $navbar-padding-top;
+  padding-bottom: $navbar-padding-bottom;
+}
+
+.navbar-default .navbar-nav > li > a.flat-button {
+  margin: 10px 20px 0px 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: white;
+  background-color: $founders-rock-blue;
+}
+
+.nav > li > a:hover, .nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: $founders-rock-blue;
+  color: white;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: $founders-rock-blue;
+  color: white;
+}
