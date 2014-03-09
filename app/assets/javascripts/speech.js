@@ -45,7 +45,6 @@ function parseText(text) {
     editor.insert("print(");
     if (text.indexOf("the string") != -1) {
         editor.insert("\"");
-        text = text.trim();
         text = text.split(" ");
         editor.insert(text.slice(3));
         editor.insert("\")\n");
