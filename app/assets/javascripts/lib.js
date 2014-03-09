@@ -1,5 +1,5 @@
 // Compute the edit distance between the two given strings
-getEditDistance = function(a, b){
+function getEditDistance(a, b){
   if(a.length == 0) return b.length;
   if(b.length == 0) return a.length;
 
@@ -32,3 +32,12 @@ getEditDistance = function(a, b){
 
   return matrix[b.length][a.length];
 };
+
+Array.prototype.contains = function(obj) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] === obj) {
+      return true;
+    }
+  }
+  return false;
+}

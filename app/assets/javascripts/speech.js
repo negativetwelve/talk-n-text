@@ -84,20 +84,55 @@ function makeFunction(text) {
 }
 
 // Functions that check if it is a valid token
+function matchesToken(word, arrayItem) {
+  if (arrayItem instanceof Array) {
+    return arrayItem.contains(word);
+  } else {
+    return arrayItem == word;
+  }
+}
+
+function matches(text, phraseArray) {
+  var words = text.split(" ");
+  var outputPhrase = [];
+  var currentWord = "";
+  var j=0;
+  for (var i=0; i < words.length; i++) {
+    if (j >= phraseArray.length) {
+      return;
+    } else if (matchesToken(words[i], phraseArray[j])) {
+      if (currentWord != "") {
+        outputPhrase.push(currentWord);
+        currentWord = "";
+      }
+      j++;
+    } else if (phraseArray[i] == null) {
+      currentWord += words[i];
+    } else {
+      return false;
+    }
+  }
+  return outputPhrase;
+}
+
 function isDefine(text) {
   return text.substring(0, define_func.length) === define_func
 }
 
 function isForLoop(text) {
-
+  console.log(matches(text, forPhrase));
+  return matches(text, forPhrase);
 }
 
 // Globals
 var textbox;
 var recognition;
+
+// Phrases
 var define_func = "define a function";
 var args = "that takes";
 var args1 = "that take";
+var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
 
 // Main function, called on page load
 $(document).ready(function() {
