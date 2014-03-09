@@ -18,10 +18,10 @@
 
 var editor;
 var code = [
-  "public Person {",
-  "\tpublic Person(int age) {",
-  "\t\tthis.age = age;",
-  "\t}",
+  "class Person {",
+  "    public Person(int age) {",
+  "        this.age = age;",
+  "    }",
   "}",
 ].join("\n");
 
@@ -45,7 +45,7 @@ function getAllLines() {
 
 function getLine(index) {
   var lines = getAllLines();
-  var line = lines[index];
-  var text = line.replace("    ", "");
+  var line = lines[index - 1];
+  var text = line.split("    ").join("");
   return text;
 }
