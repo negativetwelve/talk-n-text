@@ -25,7 +25,18 @@ var code = [
   "        self.age = age",
   "",
   "    def talk(self):",
-  "        print('hello')"
+  "        print('hello')",
+  "",
+  "",
+  "class Child(Person):",
+  "",
+  "    def __init__(self, name, age, num_child)",
+  "        Person.__init__(self, name, age)",
+  "        self.num_child = num_child",
+  "",
+  "    def crawl(self):",
+  "        print('Crawling to Varun')",
+  "",
 ].join("\n");
 
 $(document).ready(function() {
@@ -47,6 +58,10 @@ function getAllLines() {
   return lines;
 }
 
+function numLines() {
+  return getAllLines().length;
+}
+
 function getLine(index) {
   var lines = getAllLines();
   var line = lines[index - 1];
@@ -58,9 +73,15 @@ function goToLine(index) {
   editor.gotoLine(index);
 }
 
-function findDefinition(functionName) {
-  var phrase = "def "  + functionName;
-  console.log(phrase);
+function goToTop() {
+  goToLine(1);
+}
+
+function goToBottom() {
+  goToLine(numLines());
+}
+
+function find(phrase) {
   editor.find(phrase, {
       backwards: false,
       wrap: true,
@@ -69,4 +90,14 @@ function findDefinition(functionName) {
       regExp: false
   });
   editor.findNext();
+}
+
+function findDefinition(functionName) {
+  var phrase = "def "  + functionName;
+  find(phrase);
+}
+
+function findClass(className) {
+  var phrase = "class " + className;
+  find(phrase);
 }
