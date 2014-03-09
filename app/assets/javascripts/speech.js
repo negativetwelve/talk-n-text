@@ -45,9 +45,15 @@ function parseText(text) {
     editor.insert("\n" + indentation("\t", -1));
   } else if (matches(text, printCommand)) {
     editor.insert("print(");
-    if (text.indexOf("the string") != -1) {
+    if ((text.indexOf("the string") > -1) || (text.indexOf("the stream") > -1) || (text.indexOf("the screen") > -1)) {
         editor.insert("\"");
-        editor.insert(text.substring(text.indexOf("the string") + 11).trim());
+        if (text.indexOf("the string") > -1) {
+            editor.insert(text.substring(text.indexOf("the string") + 11).trim());
+        } else if (text.indexOf("the stream") > -1) {
+            editor.insert(text.substring(text.indexOf("the stream") + 11).trim());
+        } else if (text.indexOf("the screen") > -1) {
+            editor.insert(text.substring(text.indexOf("the screen") + 11).trim());
+        }
         editor.insert("\")\n" + indentation("\t", 0));
     } else {
         editor.insert(text.substring(6));

@@ -59,13 +59,17 @@ html, body {
 
   section#impact {
     @include home-section($home-impact);
+    color: gray;
+
+    h1 {
+      color: gray;
+    }
   }
 
   section#try {
     @include home-section($home-try);
   }
 }
-
 
 body {
   font-family: 'open sans';
