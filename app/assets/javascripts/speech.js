@@ -31,17 +31,16 @@ function main() {
 }
 
 function parseText(text) {
-  console.log(text);
+  text = text.trim();
+  console.log("in parse text: " + text);
 
   if (isDefine(text)) {
     makeFunction(text);
   } else if (isForLoop(text)) {
     makeForLoop(text);
   } else if (isReturn(text)) {
-    console.log("is return");
-    editor.insert("return");
-    editor.insert(text.substring(ret.length));
-    editor.insert("\n");
+    editor.insert(text.toLowerCase());
+    editor.insert("\n\b");
   }
 }
 
@@ -156,7 +155,6 @@ function isForLoop(text) {
 }
 
 function isReturn(text) {
-  console.log("entered isReturn");
   text = text.trim();
   text = text.toLowerCase();
 //  console.log("hey: " + (text.startsWith(ret)));
