@@ -95,7 +95,7 @@ function makeFunction(text) {
 
 function makeForLoop(text) {
   editor.insert(text);
-  editor.insert(":\n");
+  editor.insert(":\n\t");
 }
 
 // Functions that check if it is a valid token
