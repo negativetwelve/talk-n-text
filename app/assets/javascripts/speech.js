@@ -41,22 +41,27 @@ function parseText(text) {
     makeForLoop(text);
   } else if (isReturn(text)) {
     editor.insert(text.toLowerCase());
-    editor.insert("\n\b");
+    editor.insert("\n");
   } else if (matches(text, printCommand)) {
     editor.insert("print(");
     if (text.indexOf("the string") != -1) {
         editor.insert("\"");
         editor.insert(text.substring(text.indexOf("the string") + 11).trim());
-        editor.insert("\")\n");
+        editor.insert("\")\n" + indentation("\t", 0));
     } else {
-         
         editor.insert(text.substring(6));
-        editor.insert(")\n");
+        editor.insert(")\n" + indentation("\t", 0));
     }
 
   } else if (isIfStatement(text)) {
 
   }
+}
+
+function indentation(string, indent) {
+  console.log(indentationLevel);
+  indentationLevel += indent;
+  return Array(indentationLevel + 1).join(string);
 }
 
 function makeFunction(text) {
@@ -118,8 +123,7 @@ function makeForLoop(text) {
     iterable = iterable.join("_");
   }
   editor.insert("for " + variable + " in " + iterable);
-  indentationLevel++;
-  editor.insert(":\n" + Array(indentationLevel + 1).join("\t"));
+  editor.insert(":\n" + indentation("\t", 1));
 }
 
 function makeIfStatement(text) {
