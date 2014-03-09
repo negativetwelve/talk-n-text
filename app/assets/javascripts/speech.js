@@ -123,7 +123,7 @@ function makeForLoop(text) {
 }
 
 function makeIfStatement(text) {
-  editor.insert(text);
+  editor.insert("if");
   editor.insert(":\n\t");
 }
 
@@ -229,6 +229,10 @@ var ret = "return";
 var whilePhrase = [["while"], null];
 var ifPhrase = [["if", "is"], null];
 var printCommand = [["print", "Prince"], null];
+var lt = [null,["<", "less"], ["than", "then"], null];
+var gt = [null, [">", "greater"], ["than", "then"], null];
+var equal = [["=", "equal", "equals", "Eagle"], ["equal", "equals"]];
+
 
 // Main function, called on page load
 $(document).ready(function() {
