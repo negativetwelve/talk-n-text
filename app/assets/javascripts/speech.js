@@ -106,7 +106,10 @@ function makeFunction(text) {
 
 function makeForLoop(text) {
   var inIndex = text.indexOf("in");
-  var variable = text.slice(1, inIndex).join("_");
+  var variable = text.slice(1, inIndex);
+  if (variable instanceof Array) {
+    variable = variable.join("_");
+  }
   var iterable = text.slice(inIndex + 1).join("_");
   editor.insert("for " + variable + " in " + iterable);
   indentationLevel++;
