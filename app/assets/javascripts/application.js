@@ -35,7 +35,7 @@ var code = [
   "        self.num_child = num_child",
   "",
   "    def crawl(self):",
-  "        print('Crawling to Varun')",
+  "        print('I am crawling')",
   "",
   "",
 ].join("\n");

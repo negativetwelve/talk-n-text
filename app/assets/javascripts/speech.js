@@ -41,7 +41,7 @@ function parseText(text) {
     makeForLoop(text);
   } else if (isReturn(text)) {
     editor.insert(text.toLowerCase());
-    editor.insert("\n");
+    editor.insert("\n" + indentation("\t", -1));
   } else if (matches(text, printCommand)) {
     editor.insert("print(");
     if (text.indexOf("the string") != -1) {
@@ -56,6 +56,12 @@ function parseText(text) {
   } else if (isIfStatement(text)) {
     makeIfStatement(text);
 
+  } else if (isGoToStatement(text)) {
+    parseGoToText(text);
+  } else if (isFindFunction(text)) {
+    callFindFunction(text);
+  } else if (isFindClass(text)) {
+    callFindClass(text);
   }
 }
 
@@ -63,6 +69,30 @@ function indentation(string, indent) {
   console.log(indentationLevel);
   indentationLevel += indent;
   return Array(indentationLevel + 1).join(string);
+}
+
+function isGoToStatement(text) {
+  
+}
+
+function parseGoToText(text) {
+  
+}
+
+function isFindFunction(text) {
+  
+}
+
+function callFindFunction(text) {
+  
+}
+
+function isFindClass(text) {
+  
+}
+
+function callFindClass(text) {
+  
 }
 
 function makeFunction(text) {
