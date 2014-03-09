@@ -36,12 +36,12 @@ function parseText(text) {
   if (isDefine(text)) {
     makeFunction(text);
   } else if (isForLoop(text)) {
-    
+    makeForLoop(text);
   } else if (isReturn(text)) {
     console.log("is return");
     editor.insert("return");
     editor.insert(text.substring(ret.length));
-    editor.insert(";\n");
+    editor.insert("\n");
   }
 }
 
@@ -91,6 +91,11 @@ function makeFunction(text) {
   
     //goToLine(5;
   console.log("curr_word(in def): " + text);
+}
+
+function makeForLoop(text) {
+  editor.insert(text.join(" "));
+  editor.insert(":\n");
 }
 
 // Functions that check if it is a valid token
@@ -147,7 +152,6 @@ function isDefine(text) {
 }
 
 function isForLoop(text) {
-  console.log(matches(text, forPhrase));
   return matches(text, forPhrase);
 }
 
