@@ -150,6 +150,8 @@ var define_func = "define a function";
 var args = "that takes";
 var args1 = "that take";
 var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
+var whilePhrase = [["while"], null];
+var ifPhrase = [["if"], null];
 
 // Main function, called on page load
 $(document).ready(function() {
