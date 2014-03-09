@@ -1,4 +1,5 @@
 function main() {
+  recognition = new webkitSpeechRecognition();
   if (!('webkitSpeechRecognition' in window)) {
     upgrade();
   } else {
@@ -231,6 +232,5 @@ var printCommand = [["print", "Prince"], null];
 $(document).ready(function() {
   indentationLevel = 0;
   textbox = $('#editor');
-  recognition = new webkitSpeechRecognition();
   main();
 });
