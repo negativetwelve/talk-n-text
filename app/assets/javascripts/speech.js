@@ -31,17 +31,18 @@ function main() {
 }
 
 function parseText(text) {
-  console.log(text);
+  text = text.trim();
+  console.log("in parse text: " + text);
 
   if (isDefine(text)) {
     makeFunction(text);
   } else if (isForLoop(text)) {
     makeForLoop(text);
   } else if (isReturn(text)) {
-    console.log("is return");
-    editor.insert("return");
-    editor.insert(text.substring(ret.length));
-    editor.insert("\n");
+    editor.insert(text.toLowerCase());
+    editor.insert("\n\b");
+  } else if (isPrint(text)) {
+
   }
 }
 
@@ -75,16 +76,15 @@ function makeFunction(text) {
   editor.insert(funcName);
   editor.insert("(");
   if (indOfArgs != -1) {
-    if (paramSub > 1) {
-      editor.insert(paramSub[0]);
+    editor.insert(paramSub[0]);
+    if (paramSub.length > 1) {
       editor.insert(", ");
       editor.insert(paramSub[2]);
-      if (paramSub > 3) {
+      if (paramSub.length > 3) {
+        editor.insert(", ");
         editor.insert(paramSub[3]);  
       }
-    } else {
-      editor.insert(paramSub[0]);
-    }
+    } 
   }
   editor.insert("): \n\t");
 
@@ -181,7 +181,6 @@ function isIfStatement(text) {
 }
 
 function isReturn(text) {
-  console.log("entered isReturn");
   text = text.trim();
   text = text.toLowerCase();
 //  console.log("hey: " + (text.startsWith(ret)));
@@ -201,6 +200,7 @@ var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
 var ret = "return";
 var whilePhrase = [["while"], null];
 var ifPhrase = [["if"], null];
+var printCommand = "print";
 
 // Main function, called on page load
 $(document).ready(function() {
