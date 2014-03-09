@@ -40,33 +40,6 @@ var code = [
   "",
 ].join("\n");
 
-$(document).ready(function() {
-  $(".header-link").click(function(event) {
-    event.preventDefault();
-
-    $("ul#header-links li").removeClass("active");
-    $(this).parent().addClass("active");
-    $('html, body').animate({
-      scrollTop: $("#" + $(this).data().element).offset().top - 70
-    }, 500);
-  });
-  $(document).keypress(function(event) {
-    if (event.charCode == 96) {
-      event.preventDefault();
-      console.log("KILL SWITCH");
-      recognition.stop();
-      main();
-    }
-  });
-
-  var mode = require("ace/mode/python").Mode;
-  editor = ace.edit("editor");
-  editor.setShowPrintMargin(false);
-  editor.getSession().setMode(new mode());
-  editor.getSession().setValue(code);
-  goToBottom();
-});
-
 function getCode() {
   var code = editor.getSession().getValue();
   return code;
@@ -133,3 +106,30 @@ function findClass(className) {
 function replaceAll(text) {
   editor.relaceAll(text);
 }
+
+$(document).ready(function() {
+  $(".header-link").click(function(event) {
+    event.preventDefault();
+
+    $("ul#header-links li").removeClass("active");
+    $(this).parent().addClass("active");
+    $('html, body').animate({
+      scrollTop: $("#" + $(this).data().element).offset().top - 70
+    }, 500);
+  });
+  $(document).keypress(function(event) {
+    if (event.charCode == 96) {
+      event.preventDefault();
+      console.log("KILL SWITCH");
+      recognition.stop();
+      main();
+    }
+  });
+
+  var mode = require("ace/mode/python").Mode;
+  editor = ace.edit("editor");
+  editor.setShowPrintMargin(false);
+  editor.getSession().setMode(new mode());
+  editor.getSession().setValue(code);
+  goToBottom();
+});
