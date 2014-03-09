@@ -54,6 +54,7 @@ function parseText(text) {
     }
 
   } else if (isIfStatement(text)) {
+    makeIfStatement(text);
 
   }
 }
@@ -127,7 +128,7 @@ function makeForLoop(text) {
 }
 
 function makeIfStatement(text) {
-  editor.insert("if");
+  editor.insert("if (");
   editor.insert(":\n\t");
 }
 
