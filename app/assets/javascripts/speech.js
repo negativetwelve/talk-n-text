@@ -136,14 +136,22 @@ function matches(text, phraseArray) {
       if (currentWord != "") {
         outputPhrase.push(currentWord);
       }
-      outputPhrase.push(words[i]);
+      if (phraseArray[j] instanceof Array) {
+        outputPhrase.push(phraseArray[j][0]);
+      } else {
+        outputPhrase.push(phraseArray[j]);
+      }
       currentWord = "";
       j++;
     } else if (matchesToken(words[i], phraseArray[j + 1])) {
       if (currentWord != "") {
         outputPhrase.push(currentWord);
       }
-      outputPhrase.push(words[i]);
+      if (phraseArray[j] instanceof Array) {
+        outputPhrase.push(phraseArray[j][0]);
+      } else {
+        outputPhrase.push(phraseArray[j]);
+      }
       currentWord = "";
       j += 2;
     } else if (phraseArray[j] == null && j == phraseArray.length - 1) {
