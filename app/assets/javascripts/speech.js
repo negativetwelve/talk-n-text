@@ -107,6 +107,10 @@ function isFindFunction(text) {
 
 function callFindFunction(text) {
   console.log("called find function");
+  var functionName = text.split(" ");
+  functionName = functionName[functionName.length - 1];
+  console.log(functionName);
+  findDefinition(functionName);
 }
 
 function isFindClass(text) {
@@ -115,6 +119,9 @@ function isFindClass(text) {
 
 function callFindClass(text) {
   console.log("called find class");
+  var className = text.split(" ");
+  className = className[className.length - 1];
+  findClass(className);
 }
 
 function makeFunction(text) {
