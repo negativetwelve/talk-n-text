@@ -45,10 +45,10 @@ $(document).ready(function() {
   $(document).keypress(function(event) {
     if (event.charCode == 96) {
       event.preventDefault();
+      console.log("KILL SWITCH");
+      recognition.stop();
+      main();
     }
-    console.log("KILL SWITCH");
-    recognition.stop();
-    main();
   });
 
   var mode = require("ace/mode/python").Mode;
