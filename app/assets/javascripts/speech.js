@@ -30,13 +30,19 @@ $(document).ready(function() {
                 var curr_word_obj = event.results[i];
                 if (curr_word_obj.isFinal) {
                     var curr_word = curr_word_obj[0].transcript;
+                    parseText(curr_word);
+                }
                 
 
                     console.log("curr_word: " + curr_word + "\n");
 
-                    if (curr_word == define_func) {
+                    if (curr_word.substring(0, define_func.length) === define_func) {
                         define = true;
-                        editor.insert("def ");
+                        editor.insert("def ")
+                        editor.insert(curr_word.substring(define_func.length + 1, curr_word.indexOf(" ", define_func.length + 1)));
+                        editor.insert("(");
+
+                        //goToLine(5;
                         console.log("curr_word(in def): " + curr_word);
                     }
                     if (define) { 
