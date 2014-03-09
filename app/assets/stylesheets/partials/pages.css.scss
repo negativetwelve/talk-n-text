@@ -4,9 +4,64 @@
 
 html, body {
   height: 100%;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #editor {
   width: 100%;
   height: 100%;
+}
+
+@mixin home-section($color) {
+  background-color: $color;
+  padding: 100px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.white {
+  color: white;
+}
+
+.dark-link {
+  color: white;
+  text-decoration: underline;
+}
+
+.dark-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.main {
+  h1 {
+    color: white;
+  }
+
+
+  section#intro {
+    @include home-section($home-intro);
+
+    h1 {
+    
+    }
+  }
+
+  section#about {
+    @include home-section($home-about);
+  }
+
+  section#impact {
+    @include home-section($home-impact);
+  }
+
+  section#try {
+    @include home-section($home-try);
+  }
 }

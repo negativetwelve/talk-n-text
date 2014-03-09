@@ -1,1 +1,27 @@
-| hi
+.main
+  section#intro
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          h1.uppercase.center Talk Into Text
+          h4.center
+            | By:
+            = link_to "Mark Miyashita", "http://markmiyashita.com", class: "dark-link"
+            | and 
+            = link_to "Melissa Huang", "http://huangmelissa.com", class: "dark-link"
+  section#about
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          h1.uppercase.center About
+  section#impact
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          h1.uppercase.center Impact
+  section#try
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          h1.uppercase.center Try now!
+          = link_to "Test it out now!", text_path, class: "flat-button"
