@@ -18,7 +18,6 @@ function main() {
       var results = event.results;
       var final_tran = "";
       var interim_tran = "";
-      //var define_func = ["define", "a", "function"];
       for (var i=event.resultIndex; i < results.length; i++) {
         var curr_word_obj = event.results[i];
         if (curr_word_obj.isFinal) {
@@ -27,7 +26,7 @@ function main() {
         }
       }
     }
-    recognition.stop();
+    //recognition.stop();
   }
 }
 
@@ -38,10 +37,16 @@ function parseText(text) {
     makeFunction(text);
   } else if (isForLoop(text)) {
     makeForLoop(text);
+  } else if (isReturn(text)) {
+    console.log("is return");
+    editor.insert("return");
+    editor.insert(text.substring(ret.length));
+    editor.insert("\n");
   }
 }
 
 function makeFunction(text) {
+  text = text.toLowerCase();
   var indOfArgs = text.indexOf(args);
   if (indOfArgs == -1) {
     indOfArgs = text.indexOf(args1); // heard 'take' instead of 'takes'
@@ -53,28 +58,33 @@ function makeFunction(text) {
   } else {
     funcName = text;
   }
-
-  paramSub = paramSub.split(" ");
-  paramSub = paramSub.slice(2);
+  if (indOfArgs != -1) {
+    paramSub = paramSub.split(" ");
+    paramSub = paramSub.slice(2);
+  }
 
   funcName = funcName.split(" ");
   funcName = funcName.slice(3); 
-  if (funcName.length != 1) {
-    console.log("length = " + funcName.length);
+  if (funcName.length > 1) {
     funcName = funcName.join("_");
+    if (funcName.charAt(funcName.length - 1) == "_") {
+      funcName = funcName.substring(0, funcName.length - 1);
+    }
   }
   editor.insert("def ")
   editor.insert(funcName);
   editor.insert("(");
-  if (paramSub > 1) {
-    editor.insert(paramSub[0]);
-    editor.insert(", ");
-    editor.insert(paramSub[2]);
-    if (paramSub > 3) {
-      editor.insert(paramSub[3]);  
+  if (indOfArgs != -1) {
+    if (paramSub > 1) {
+      editor.insert(paramSub[0]);
+      editor.insert(", ");
+      editor.insert(paramSub[2]);
+      if (paramSub > 3) {
+        editor.insert(paramSub[3]);  
+      }
+    } else {
+      editor.insert(paramSub[0]);
     }
-  } else {
-    editor.insert(paramSub[0]);
   }
   editor.insert("): \n\t");
 
@@ -145,6 +155,14 @@ function isForLoop(text) {
   return matches(text, forPhrase);
 }
 
+function isReturn(text) {
+  console.log("entered isReturn");
+  text = text.trim();
+  text = text.toLowerCase();
+//  console.log("hey: " + (text.startsWith(ret)));
+  return text.substring(0, ret.length) === ret;
+}
+
 // Globals
 var textbox;
 var recognition;
@@ -154,6 +172,7 @@ var define_func = "define a function";
 var args = "that takes";
 var args1 = "that take";
 var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
+var ret = "return";
 var whilePhrase = [["while"], null];
 var ifPhrase = [["if"], null];
 
