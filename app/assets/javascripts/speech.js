@@ -111,7 +111,10 @@ function makeForLoop(text) {
   if (variable instanceof Array) {
     variable = variable.join("_");
   }
-  var iterable = text.slice(inIndex + 1).join("_");
+  var iterable = text.slice(inIndex + 1);
+  if (iterable instanceof Array) {
+    iterable = iterable.join("_");
+  }
   editor.insert("for " + variable + " in " + iterable);
   indentationLevel++;
   editor.insert(":\n" + Array(indentationLevel + 1).join("\t"));
