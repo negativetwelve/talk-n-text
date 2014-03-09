@@ -53,17 +53,19 @@ function makeFunction(text) {
 
 // Functions that check if it is a valid token
 function isDefine(text) {
-  var define_func = "define a function";
-  return text.substring(0, define_func.length) === define_func)
+  return text.substring(0, define_func.length) === define_func
 }
 
 function isForLoop(text) {
 
 }
 
+// Globals
 var textbox;
 var recognition;
+var define_func = "define a function";
 
+// Main function, called on page load
 $(document).ready(function() {
   textbox = $('#editor');
   recognition = new webkitSpeechRecognition();
