@@ -16,6 +16,7 @@ function main() {
     /* the input */
     recognition.onresult = function (event) {
       console.log("entered result");
+      Pace.restart();
       var results = event.results;
       var final_tran = "";
       var interim_tran = "";
@@ -62,6 +63,8 @@ function parseText(text) {
     callFindFunction(text);
   } else if (isFindClass(text)) {
     callFindClass(text);
+  } else if (isDeleteLine(text)) {
+    callDeleteLine(text);
   }
 }
 
@@ -72,11 +75,29 @@ function indentation(string, indent) {
 }
 
 function isGoToStatement(text) {
-  return matches(text, goToPhrase);
+  return matches(text, goToPhrase) || matches(text, goToPhrase2) || matches(text, goToTop) || matches(text, goToBottom);
 }
 
 function parseGoToText(text) {
   console.log("called go to");
+  var place = text.split(" ");
+  place = place[place.length - 1];
+  console.log(place);
+  if (place == "top") {
+    goToTop();
+  } else if (place == "bottom") {
+    goToBottom();
+  } else {
+    goToLine(place);
+  }
+}
+
+function isDeleteLine(text) {
+  
+}
+
+function callDeleteLine(text) {
+  
 }
 
 function isFindFunction(text) {
@@ -269,6 +290,10 @@ var gt = [null, [">", "greater"], ["than", "then"], null];
 var equal = [["=", "equal", "equals", "Eagle"], ["equal", "equals"]];
 
 var goToPhrase = [["go"], ["to"], ["line"], null];
+var goToPhrase2 = [["goto"], ["line"], null];
+var goToTop = [["goto", "go"], ["top"]];
+var goToBottom = [["goto", "go"], ["bottom"]];
+
 var findFunctionPhrase = [["find"], ["function"], null];
 var findClassPhrase = [["find"], ["class"], null];
 
