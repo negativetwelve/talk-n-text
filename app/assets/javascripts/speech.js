@@ -153,10 +153,12 @@ function isTab(text) {
 }
 
 function callTab() {
+  indentationLevel++;
   editor.insert("\t");
 }
 
 function isUnTab(text) {
+  indentationLevel--;
   return matches(text, untabPhrase);
 }
 
