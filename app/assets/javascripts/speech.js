@@ -7,24 +7,34 @@ $(document).ready(function() {
         recognition.interimResults = true; //access to interim text
         recognition.lang = "en";
 
-        var textbox = $('#test');
+        var textbox = $('#editor');
 
         recognition.start();
 
         recognition.onstart=function(event) {
             console.log("on start");
-            console.log(event);
 
             //var pos = textArea.getCursorPosition() - interimResult.length;
             }
         /* the input */
+        
         recognition.onresult = function (event) {
             var results = event.results;
-            console.log(results);
-            for (var i=0; i < results.length; i++) {
+            var final_tran = "";
+            var interim_tran = "";
+            for (var i=event.resultIndex; i < results.length; i++) {
+                if (event.results[i].isFinal) {
+                    final_tran += event.results[i][0].transcript;
+                } else {
+                    interim_tran += event.results[i][0].transcript;
+                }
                 var word = results[i][0].transcript;
-                console.log(results[i][0].transcript);
-                textbox.val(word);
+
+                if (word == "hello") {
+                    word = "hi";
+                }
+                console.log(word);
+                editor.insert(final_tran);
             }
         }
         
