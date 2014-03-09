@@ -45,13 +45,15 @@ function parseText(text) {
     editor.insert("print(");
     if (text.indexOf("the string") != -1) {
         editor.insert("\"");
-        editor.insert(text.substring(text.indexOf("the string") + 10));
+        editor.insert(text.substring(text.indexOf("the string") + 11).trim());
         editor.insert("\")\n");
     } else {
-        text = text.split(" ");
-        editor.insert(text.slice(1, 2));
+         
+        editor.insert(text.substring(6));
         editor.insert(")\n");
     }
+
+  } else if (isIfStatement(text)) {
 
   }
 }
@@ -198,11 +200,11 @@ function isForLoop(text) {
 }
 
 function isWhileLoop(text) {
-  return matches(text, ifPhrase);
+  return matches(text, whilePhrase);
 }
 
 function isIfStatement(text) {
-  return matches(text, whilePhrase);
+  return matches(text, ifPhrase);
 }
 
 function isReturn(text) {
