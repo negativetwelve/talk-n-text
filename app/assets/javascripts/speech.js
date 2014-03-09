@@ -84,7 +84,7 @@ function makeFunction(text) {
 }
 
 function makeForLoop(text) {
-  editor.insert(text.join(" "));
+  editor.insert(text);
   editor.insert(":\n");
 }
 
