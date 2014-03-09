@@ -94,6 +94,20 @@ function makeFunction(text) {
 }
 
 function makeForLoop(text) {
+  var inIndex = text.indexOf("in");
+  var variable = text.slice(1, inIndex).join("_");
+  var iterable = text.slice(inIndex + 1).join("_");
+  editor.insert("for " + variable + " in " + iterable);
+  indentationLevel++;
+  editor.insert(":\n" + Array(indentationLevel + 1).join("\t"));
+}
+
+function makeIfStatement(text) {
+  editor.insert(text);
+  editor.insert(":\n\t");
+}
+
+function makeWhileStatement(text) {
   editor.insert(text);
   editor.insert(":\n\t");
 }
@@ -132,8 +146,11 @@ function matches(text, phraseArray) {
       outputPhrase.push(words[i]);
       currentWord = "";
       j += 2;
-    } else if (phraseArray[j] == null && currentWord != "") {
-      outputPhrase.push(currentWord);
+    } else if (phraseArray[j] == null && j == phraseArray.length - 1) {
+      if (currentWord != "") {
+        outputPhrase.push(currentWord);
+      }
+      outputPhrase.push.apply(outputPhrase, words.slice(i));
       return outputPhrase;
     } else if (phraseArray[j] == null) {
       currentWord += words[i];
@@ -155,6 +172,14 @@ function isForLoop(text) {
   return matches(text, forPhrase);
 }
 
+function isWhileLoop(text) {
+  return matches(text, ifPhrase);
+}
+
+function isIfStatement(text) {
+  return matches(text, whilePhrase);
+}
+
 function isReturn(text) {
   console.log("entered isReturn");
   text = text.trim();
@@ -166,6 +191,7 @@ function isReturn(text) {
 // Globals
 var textbox;
 var recognition;
+var indentationLevel;
 
 // Phrases
 var define_func = "define a function";
@@ -178,6 +204,7 @@ var ifPhrase = [["if"], null];
 
 // Main function, called on page load
 $(document).ready(function() {
+  indentationLevel = 0;
   textbox = $('#editor');
   recognition = new webkitSpeechRecognition();
   main();
