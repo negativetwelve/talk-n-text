@@ -195,7 +195,6 @@ function isDefine(text) {
 }
 
 function isForLoop(text) {
-  text = text.split(" ");
   return matches(text, forPhrase);
 }
 
