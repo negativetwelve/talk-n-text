@@ -14,6 +14,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'google-analytics-rails', '~> 0.0.5'
 gem 'devise', '~> 3.2.3'
 
+# Text Editor
+gem 'ace-rails-ap'
+
 group :doc do
   gem 'sdoc', require: false
 end

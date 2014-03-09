@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (2.0.1)
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
       mail (~> 2.5.3)
@@ -183,6 +184,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ace-rails-ap
   annotate (~> 2.6.1)
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)

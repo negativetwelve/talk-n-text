@@ -12,4 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ace/ace
+//= require ace/mode-java.js
 //= require_tree .
+
+
+$(document).ready(function() {
+  var JavaMode = require("ace/mode/java").Mode;
+  var editor = ace.edit("editor");
+  editor.getSession().setMode(new JavaMode());
+});
