@@ -104,6 +104,7 @@ function makeFunction(text) {
 }
 
 function makeForLoop(text) {
+  text = text.split(" ");
   var inIndex = text.indexOf("in");
   var variable = text.slice(1, inIndex);
   if (variable instanceof Array) {
@@ -193,6 +194,7 @@ function isDefine(text) {
 }
 
 function isForLoop(text) {
+  text = text.split(" ");
   return matches(text, forPhrase);
 }
 
