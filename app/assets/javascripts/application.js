@@ -60,9 +60,10 @@ function goToLine(index) {
 
 function findDefinition(functionName) {
   var phrase = "def "  + functionName;
-  editor.find(phrase ,{
+  console.log(phrase);
+  editor.find(phrase, {
       backwards: false,
-      wrap: false,
+      wrap: true,
       caseSensitive: false,
       wholeWord: false,
       regExp: false
