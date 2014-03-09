@@ -78,6 +78,14 @@ function getAllLines() {
   return lines;
 }
 
+function getCursorPosition() {
+  return editor.getCursorPosition().row;
+}
+
+function moveCursorTo(row) {
+  editor.moveCursorTo(row);
+}
+
 function numLines() {
   return getAllLines().length;
 }
