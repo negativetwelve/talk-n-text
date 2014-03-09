@@ -41,7 +41,19 @@ function parseText(text) {
   } else if (isReturn(text)) {
     editor.insert(text.toLowerCase());
     editor.insert("\n\b");
-  } else if (isPrint(text)) {
+  } else if (matches(text, printCommand)) {
+    editor.insert("print(");
+    if (text.indexOf("the string") != -1) {
+        editor.insert("\"");
+        text = text.trim();
+        text = text.split(" ");
+        editor.insert(text.slice(3));
+        editor.insert("\")\n");
+    } else {
+        text = text.split(" ");
+        editor.insert(text.slice(1, 2));
+        editor.insert(")\n");
+    }
 
   }
 }
@@ -174,7 +186,7 @@ var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
 var ret = "return";
 var whilePhrase = [["while"], null];
 var ifPhrase = [["if"], null];
-var printCommand = "print";
+var printCommand = [["print", "Prince"], null];
 
 // Main function, called on page load
 $(document).ready(function() {
