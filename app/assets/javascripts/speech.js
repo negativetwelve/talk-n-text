@@ -41,6 +41,8 @@ function parseText(text) {
   } else if (isReturn(text)) {
     editor.insert(text.toLowerCase());
     editor.insert("\n\b");
+  } else if (isPrint(text)) {
+
   }
 }
 
@@ -172,6 +174,7 @@ var forPhrase = [["for", "4", "four"], null, ["in", "into"], null];
 var ret = "return";
 var whilePhrase = [["while"], null];
 var ifPhrase = [["if"], null];
+var printCommand = "print";
 
 // Main function, called on page load
 $(document).ready(function() {
