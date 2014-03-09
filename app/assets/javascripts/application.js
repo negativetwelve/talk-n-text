@@ -16,9 +16,36 @@
 //= require ace/mode-java.js
 //= require_tree .
 
+var editor;
+var code = [
+  "public Person {",
+  "\tpublic Person(int age) {",
+  "\t\tthis.age = age;",
+  "\t}",
+  "}",
+].join("\n");
 
 $(document).ready(function() {
   var JavaMode = require("ace/mode/java").Mode;
-  var editor = ace.edit("editor");
+  editor = ace.edit("editor");
   editor.getSession().setMode(new JavaMode());
+  editor.getSession().setValue(code);
 });
+
+function getCode() {
+  var code = editor.getSession().getValue();
+  return code;
+}
+
+function getAllLines() {
+  var code = getCode();
+  var lines = code.split("\n");
+  return lines;
+}
+
+function getLine(index) {
+  var lines = getAllLines();
+  var line = lines[index];
+  var text = line.replace("    ", "");
+  return text;
+}
