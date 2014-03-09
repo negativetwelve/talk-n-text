@@ -37,6 +37,7 @@ var code = [
   "    def crawl(self):",
   "        print('Crawling to Varun')",
   "",
+  "",
 ].join("\n");
 
 $(document).ready(function() {
@@ -45,6 +46,7 @@ $(document).ready(function() {
   editor.setShowPrintMargin(false);
   editor.getSession().setMode(new mode());
   editor.getSession().setValue(code);
+  goToBottom();
 });
 
 function getCode() {
@@ -100,4 +102,8 @@ function findDefinition(functionName) {
 function findClass(className) {
   var phrase = "class " + className;
   find(phrase);
+}
+
+function replaceAll(text) {
+  editor.relaceAll(text);
 }
