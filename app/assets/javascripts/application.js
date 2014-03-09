@@ -13,22 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require ace/ace
-//= require ace/mode-java.js
+//= require ace/mode-python.js
 //= require_tree .
 
 var editor;
 var code = [
-  "class Person {",
-  "    public Person(int age) {",
-  "        this.age = age;",
-  "    }",
-  "}",
+  "class Person(object):",
+  "",
+  "    def __init__(self, name, age):",
+  "        self.name = name",
+  "        self.age = age",
+  "",
+  "    def talk(self):",
+  "        print('hello')"
 ].join("\n");
 
 $(document).ready(function() {
-  var JavaMode = require("ace/mode/java").Mode;
+  var mode = require("ace/mode/python").Mode;
   editor = ace.edit("editor");
-  editor.getSession().setMode(new JavaMode());
+  editor.getSession().setMode(new mode());
   editor.getSession().setValue(code);
 });
 
